@@ -15,7 +15,7 @@ export default function Foot() {
             </li>
             <li>
                 <a href="#" className="hover:underline">Contact</a>
-                
+                {/* testing     */}
             </li>
        </ul>
     </footer>
