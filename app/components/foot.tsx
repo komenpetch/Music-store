@@ -16,6 +16,12 @@ export default function Foot() {
             <li>
                 <a href="#" className="hover:underline">Contact</a>
                 {/* testing     */}
+                {/* testing     */}
+                {/* testing     */}
+                {/* testing     */}
+                {/* testing     */}
+                {/* testing     */}
+                
             </li>
        </ul>
     </footer>
