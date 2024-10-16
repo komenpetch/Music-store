@@ -24,6 +24,10 @@ export default function Instrument({ name, price, imageUrl, like, isNew }: Instr
             {/* texting */}
 
       {/* texting */}
+      {/* texting */}
+      {/* texting */}
+      {/* texting */}
+      
 
     </div>
   );
