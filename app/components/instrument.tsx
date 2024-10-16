@@ -20,6 +20,7 @@ export default function Instrument({ name, price, imageUrl, like, isNew }: Instr
       <h2 className="text-black text-xl font-bold mt-4">{name}</h2>
       <p className="text-gray-600">${price}</p>
       <p className="text-gray-500 mt-2">❤️ {like} likes</p>
+      {/* texting */}
     </div>
   );
 }
