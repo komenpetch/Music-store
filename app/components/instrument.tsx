@@ -21,6 +21,10 @@ export default function Instrument({ name, price, imageUrl, like, isNew }: Instr
       <p className="text-gray-600">${price}</p>
       <p className="text-gray-500 mt-2">❤️ {like} likes</p>
       {/* texting */}
+            {/* texting */}
+
+      {/* texting */}
+
     </div>
   );
 }
