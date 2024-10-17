@@ -175,6 +175,18 @@ export default function InstrumentPage({ params }: { params: { id: string } }) {
               <h1 className="text-4xl font-bold text-gray-800 mb-3">{instrument.name}</h1>
               <p className="text-2xl text-gray-700 mb-3">${instrument.price}</p>
 
+              <p className="text-gray-600 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel justo eu erat
+                ultricies consequat. Aenean a urna ac nunc fermentum dictum. Vivamus vel risus sit amet
+                dolor elementum tincidunt. Nam vel mauris et urna ullamcorper consectetur. 
+              </p>
+
+              <p className="text-gray-600 mb-4">
+                Duis facilisis, purus vel ultricies aliquet, dolor nunc convallis odio, id consequat
+                felis metus sit amet massa. Donec sit amet facilisis purus. Praesent at sapien ut ipsum
+                vehicula euismod nec non urna.
+              </p>
+
               <div className="flex items-center mb-4">
                 <span className="text-gray-600">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -6,7 +6,7 @@ const Header = () => {
       <section className="relative mx-auto w-full">
         {/* Navbar */}
         <nav className="fixed top-0 left-0 right-0 bg-gray-900 text-white w-full z-50">
-          <div className="px-5 xl:px-12 py-6 flex w-full items-center justify-between">
+          <div className="px-5 xl:px-12 py-4 flex w-full items-center justify-between">
             <a className="text-3xl font-bold font-heading" href="#">
               <img className="h-12" src="https://img.icons8.com/?size=100&id=NMcUI9NdpWhA&format=png&color=000000" alt="logo" />
             </a>
