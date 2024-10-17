@@ -9,6 +9,7 @@ export default function Music() {
   const [isNew, setIsNew] = useState(false);
   const [instruments, setInstruments] = useState([
     {
+      id: "1",
       name: "Fender Guitar",
       price: 300,
       imageUrl: "https://www.bigtone.in.th/wp-content/uploads/2017/12/Stratv-EJ-BLK-MN.jpg",
@@ -16,6 +17,7 @@ export default function Music() {
       isNew: true,
     },
     {
+      id: "2",
       name: "Yamaha Piano",
       price: 1500,
       imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg0xiilJ5qFL4EE0bBihLw4V4Y9SGMqsAxJwBca61w-Ohfz-QKfwF6Z9j977tASd9xMZA&usqp=CAU",
@@ -23,6 +25,7 @@ export default function Music() {
       isNew: false,
     },
     {
+      id: "3",
       name: "Roland Drum Set",
       price: 800,
       imageUrl: "https://www.theeramusic.com/wp-content/uploads/2021/10/td-17kv2_angle_gal.png",
@@ -30,6 +33,7 @@ export default function Music() {
       isNew: false,
     },
     {
+      id: "4",
       name: "Gibson Les Paul",
       price: 1200,
       imageUrl: "https://media.ctmusicshop.com/wp-content/uploads/2023/01/26054409/Gibson-Les-Paul-Standard-60s-Faded-1.jpg",
@@ -37,6 +41,7 @@ export default function Music() {
       isNew: true,
     },
     {
+      id: "5",
       name: "Korg Synthesizer",
       price: 600,
       imageUrl: "https://www.behngiepseng.com/cdn/shop/products/f53493a90930d18850a6d3f1c32fa6ed_pc_1024x.jpg?v=1621828362",
@@ -44,6 +49,7 @@ export default function Music() {
       isNew: false,
     },
     {
+      id: "6",
       name: "Pearl Snare Drum",
       price: 200,
       imageUrl: "https://img.lazcdn.com/g/p/426d56e8533a8026ab60fdf6f9945d2b.jpg_720x720q80.jpg",
@@ -51,6 +57,7 @@ export default function Music() {
       isNew: false,
     },
     {
+      id: "7",
       name: "Ibanez Bass Guitar",
       price: 500,
       imageUrl: "https://iguitarmusic.co.th/wp-content/uploads/2022/07/p_region_GSR180_BEM_4H_03.jpg",
@@ -58,6 +65,7 @@ export default function Music() {
       isNew: true,
     },
     {
+      id: "8",
       name: "Martin Acoustic Guitar",
       price: 700,
       imageUrl: "https://sc1.musik-produktiv.com/pic-010116129xxl/martin-guitars-d-10e-01.jpg",
@@ -65,6 +73,7 @@ export default function Music() {
       isNew: false,
     },
     {
+      id: "9",
       name: "Casio Digital Keyboard",
       price: 400,
       imageUrl: "https://tmw.com.sg/wp-content/uploads/2020/05/casio-ct-x3000-side-view.webp",
@@ -72,6 +81,7 @@ export default function Music() {
       isNew: true,
     },
     {
+      id: "10",
       name: "Selmer Saxophone",
       price: 1100,
       imageUrl: "https://m.media-amazon.com/images/I/71x0NZWO53L.jpg",
@@ -81,13 +91,13 @@ export default function Music() {
   ]);
 
   const handleAddInstrument = () => {
-    // Ensure fields are filled correctly before adding the instrument
     if (!name || !price || !imageUrl || !like) {
       alert("Please fill out all fields correctly.");
       return;
     }
 
     const newInstrument = {
+      id: (instruments.length + 1).toString(),
       name,
       price: Number(price),
       imageUrl,
@@ -96,7 +106,6 @@ export default function Music() {
     };
 
     setInstruments([...instruments, newInstrument]);
-    // Reset form fields
     setName("");
     setPrice("");
     setImageUrl("");
@@ -104,31 +113,76 @@ export default function Music() {
     setIsNew(false);
   };
 
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [editingInstrument, setEditingInstrument] = useState({
+    id: "",
+    name: "",
+    price: "",
+    imageUrl: "",
+    like: "",
+    isNew: false,
+  });
+
+  const handleDeleteInstrument = (id: string) => {
+    setInstruments(instruments.filter(instrument => instrument.id !== id));
+  };
+
+  const handleEditInstrument = (id: string) => {
+    const index = instruments.findIndex(instrument => instrument.id === id);
+    setEditingIndex(index);
+    setEditingInstrument({ 
+      ...instruments[index], 
+      price: instruments[index].price.toString(), 
+      like: instruments[index].like.toString() 
+    });
+  };
+
+  const handleSaveEdit = () => {
+    const updatedInstruments = instruments.map((instrument) =>
+      instrument.id === editingInstrument.id
+        ? {
+            ...editingInstrument,
+            price: Number(editingInstrument.price),
+            like: Number(editingInstrument.like),
+          }
+        : instrument
+    );
+    setInstruments(updatedInstruments);
+    setEditingIndex(null);
+    setEditingInstrument({ id: "", name: "", price: "", imageUrl: "", like: "", isNew: false });
+  };
+
   return (
     <div className="p-8 mt-24 mb-20">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {instruments.map((instrument, index) => (
+        {instruments.map((instrument) => (
           <Instrument
-            key={index}
+            key={instrument.id}
+            id={instrument.id}
             name={instrument.name}
             price={instrument.price}
             imageUrl={instrument.imageUrl}
             like={instrument.like}
             isNew={instrument.isNew}
+            onDelete={() => handleDeleteInstrument(instrument.id)}
+            onEdit={() => handleEditInstrument(instrument.id)}
           />
         ))}
       </div>
-      {/* The Add New Instrument form */}
+      {/* The Add/Edit Instrument form */}
       <div className="flex justify-center items-center mt-16">
         <div className="w-72 max-w-md p-8 bg-gray-100 rounded shadow-lg">
-          {/* <h1 className="text-2xl font-bold mb-4 text-black text-center">Add New Music Instrument</h1> */}
           <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
             <div>
               <label className="block text-sm font-medium text-black">Name:</label>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={editingIndex !== null ? editingInstrument.name : name}
+                onChange={(e) =>
+                  editingIndex !== null
+                    ? setEditingInstrument({ ...editingInstrument, name: e.target.value })
+                    : setName(e.target.value)
+                }
                 className="border border-gray-300 rounded p-2 w-full text-black"
                 placeholder="Enter name"
               />
@@ -137,8 +191,12 @@ export default function Music() {
               <label className="block text-sm font-medium text-black">Price:</label>
               <input
                 type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                value={editingIndex !== null ? editingInstrument.price : price}
+                onChange={(e) =>
+                  editingIndex !== null
+                    ? setEditingInstrument({ ...editingInstrument, price: e.target.value })
+                    : setPrice(e.target.value)
+                }
                 className="border border-gray-300 rounded p-2 w-full text-black"
                 placeholder="Enter price"
               />
@@ -147,8 +205,12 @@ export default function Music() {
               <label className="block text-sm font-medium text-black">Image URL:</label>
               <input
                 type="text"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
+                value={editingIndex !== null ? editingInstrument.imageUrl : imageUrl}
+                onChange={(e) =>
+                  editingIndex !== null
+                    ? setEditingInstrument({ ...editingInstrument, imageUrl: e.target.value })
+                    : setImageUrl(e.target.value)
+                }
                 className="border border-gray-300 rounded p-2 w-full text-black"
                 placeholder="Enter URL"
               />
@@ -157,8 +219,12 @@ export default function Music() {
               <label className="block text-sm font-medium text-black">Likes:</label>
               <input
                 type="number"
-                value={like}
-                onChange={(e) => setLike(e.target.value)}
+                value={editingIndex !== null ? editingInstrument.like : like}
+                onChange={(e) =>
+                  editingIndex !== null
+                    ? setEditingInstrument({ ...editingInstrument, like: e.target.value })
+                    : setLike(e.target.value)
+                }
                 className="border border-gray-300 rounded p-2 w-full text-black"
                 placeholder="Enter likes"
               />
@@ -167,17 +233,21 @@ export default function Music() {
               <label className="text-sm font-medium text-black">Is this Instrument Newest?:</label>
               <input
                 type="checkbox"
-                checked={isNew}
-                onChange={(e) => setIsNew(e.target.checked)}
+                checked={editingIndex !== null ? editingInstrument.isNew : isNew}
+                onChange={(e) =>
+                  editingIndex !== null
+                    ? setEditingInstrument({ ...editingInstrument, isNew: e.target.checked })
+                    : setIsNew(e.target.checked)
+                }
                 className="ml-2"
               />
             </div>
             <button
               type="button"
-              onClick={handleAddInstrument}
+              onClick={editingIndex !== null ? handleSaveEdit : handleAddInstrument}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 w-full"
             >
-              Add New Instrument
+              {editingIndex !== null ? "Save Changes" : "Add New Instrument"}
             </button>
           </form>
         </div>
