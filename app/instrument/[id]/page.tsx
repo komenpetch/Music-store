@@ -197,6 +197,11 @@ export default function InstrumentPage({ params }: { params: { id: string } }) {
               >
                 Edit Instrument
               </button>
+
+              {/* Add to Cart or other actions here */}
+              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg ml-4">
+                Add to Cart
+              </button>
             </div>
           </>
         ) : (
