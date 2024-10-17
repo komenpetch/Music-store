@@ -153,8 +153,8 @@ export default function Music() {
   };
 
   return (
-    <div className="p-8 mt-24 mb-20">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    <div className="p-8 mt-24 mb-20 ml-28">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {instruments.map((instrument) => (
           <Instrument
             key={instrument.id}

@@ -109,21 +109,48 @@ export default function InstrumentPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="container mx-auto p-4 mt-24">
-      <Link href="/music" className="text-blue-500 hover:underline mb-4 block">
-        &larr; Back to all instruments
+    <div className="container mx-auto p-4 mt-24 mb-24">
+      <Link
+        href="/music"
+        className="text-blue-500 hover:underline mb-8 inline-block text-lg font-medium"
+      >
+        ← Back to all instruments
       </Link>
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-        <img src={instrument.imageUrl} alt={instrument.name} className="w-full h-64 object-cover" />
-        <div className="p-6">
-          <h1 className="text-black text-3xl font-bold mb-2">{instrument.name}</h1>
-          <p className="text-xl text-black mb-4">${instrument.price}</p>
-          <p className="text-black mb-4">❤️ {instrument.like} likes</p>
-          {instrument.isNew && (
-            <span className="bg-yellow-400 text-black text-xs font-bold mr-2 px-2.5 py-0.5 rounded">
-              NEW!
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Image Section */}
+        <div className="rounded-lg overflow-hidden shadow-lg">
+          <img
+            src={instrument.imageUrl}
+            alt={instrument.name}
+            className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+
+        {/* Details Section */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h1 className="text-4xl font-bold text-gray-800 mb-3">{instrument.name}</h1>
+          <p className="text-2xl text-gray-700 mb-3">${instrument.price}</p>
+
+          <div className="flex items-center mb-4">
+            <span className="text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.9l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.682-1.682a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              {instrument.like} likes
             </span>
-          )}
+
+            {instrument.isNew && (
+              <span className="ml-4 bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                NEW!
+              </span>
+            )}
+          </div>
+
+          {/* Add to Cart or other actions here */}
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg">
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
