@@ -20,7 +20,7 @@ export default function Music() {
       id: "2",
       name: "Yamaha Piano",
       price: 1500,
-      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg0xiilJ5qFL4EE0bBihLw4V4Y9SGMqsAxJwBca61w-Ohfz-QKfwF6Z9j977tASd9xMZA&usqp=CAU",
+      imageUrl: "https://th.yamaha.com/th/files/gp_product_gc2_f3130f03f469f44c11edd340b3c30567.jpg",
       like: 15,
       isNew: false,
     },
