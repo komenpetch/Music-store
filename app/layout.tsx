@@ -25,11 +25,11 @@ export default function RootLayout({
         className={`${sarabun.className}`}
         style={{ backgroundColor: 'white ' }} // Replace with your desired color
       >
-        <Head />
+        {/* <Head /> */}
         <main>
           {children}
         </main>
-        <Foot />
+        {/* <Foot /> */}
       </body>
     </html>
   );
