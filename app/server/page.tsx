@@ -26,6 +26,7 @@ export default async function GuitarPage() {
                     Add New Guitar
                 </button>
             </Link>
+            testing
         </div>
     );
 }
