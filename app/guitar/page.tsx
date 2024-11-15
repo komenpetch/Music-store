@@ -28,8 +28,8 @@ export default function AddGuitarPage() {
             setBrand('');
             setPrice('');
             alert('Guitar added successfully!');
-            router.push('/server'); // Navigate back to the server page to show the updated list
-            router.refresh(); // Refresh the page to reload the latest data
+            // router.push('/server');
+            router.refresh();
         }
     };
 
@@ -70,7 +70,7 @@ export default function AddGuitarPage() {
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                    className="w-full text-white px-4 py-2 rounded-md bg-gradient-to-r from-violet-200 to-pink-200"
                 >
                     Add Guitar
                 </button>
